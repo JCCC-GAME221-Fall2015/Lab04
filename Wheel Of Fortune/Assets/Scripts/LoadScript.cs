@@ -3,8 +3,10 @@ using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(References))]
 public class LoadScript : MonoBehaviour {
 
+	FileInfo originalFile;
 	TextAsset textFile;
 	TextReader reader;
 
@@ -13,8 +15,18 @@ public class LoadScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		textFile = (TextAsset)Resources.Load ("embedded", typeof(TextAsset));
-		reader = new StringReader (textFile.text);
+
+		originalFile = new FileInfo (Application.dataPath + "/sentences.txt");
+
+		if (originalFile != null && originalFile.Exists) 
+		{
+			reader = originalFile.OpenText ();
+		} 
+		else 
+		{
+			textFile = (TextAsset)Resources.Load ("embedded", typeof(TextAsset));
+			reader = new StringReader (textFile.text);
+		}
 
 		string lineOfText;
 		int lineNumber = 0;
@@ -33,10 +45,13 @@ public class LoadScript : MonoBehaviour {
 			}
 			lineNumber++;
 		}
+
+		SendMessage ("Gather");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
 }
