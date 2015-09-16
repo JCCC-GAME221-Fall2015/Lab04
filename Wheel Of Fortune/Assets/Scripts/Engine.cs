@@ -135,6 +135,12 @@ public class Engine : MonoBehaviour {
         charGoal = 0;
         charGot = 0;
 
+        int numSent = refs.sentences.Count;
+        int randomSent = Random.Range(0, numSent);
+
+        word = refs.sentences[randomSent];
+        hint = refs.clues[randomSent];
+
         //If there are too many letters in the phrase, skip it 
         //Probably some more robust error checking and fail-safe should happen here
         if (word.Length > 51)
@@ -203,6 +209,4 @@ public class Engine : MonoBehaviour {
             bt.interactable = true;
         }
     }
-
-    
 }

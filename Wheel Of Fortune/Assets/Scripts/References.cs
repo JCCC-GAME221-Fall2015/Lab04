@@ -29,9 +29,16 @@ public class References : MonoBehaviour {
     public GameObject gameOverButton, gameWonButton;
     [HideInInspector]
     public Button[] buttons;
+    [HideInInspector]
+    public List<string> sentences = new List<string>();
+    [HideInInspector]
+    public List<string> clues = new List<string>();
 
     //Altered
-    void Start () {
+    void Gather () {
+        sentences = GetComponent<LoadScript>().sentences;
+        clues = GetComponent<LoadScript>().clues;
+
 
         //Initialize the arrays to store 52 items, which is the number of letters on the wheel of 
         //fortune board
@@ -109,6 +116,4 @@ public class References : MonoBehaviour {
         //Inform the Engine to begin the game!
         SendMessage("Begin");
     }
-
-
 }
