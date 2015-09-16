@@ -14,10 +14,20 @@ public class Engine : MonoBehaviour {
     //Variables
     References refs;
     int points;
-    string word = "  Luck Be       In The         Air        Tonight"; //Stores the phrase the player should guess
-    string hint = "Phrases";                    //Stores the hint provided to the player 
+
+	string word = " ";
+	string hint = " ";
+
     int charGoal = 0;                           //Stores how many letters the player needs to guess
     int charGot = 0;                            //Tracks how many letters the player has already guessed
+
+	// Add
+	int numSent = refs.phrases.Count;
+	int randomSent = Random.Range(0, numSent);
+
+	//Add
+	word = refs.phrases[randomSent];
+	hint = refs.clues[randomSent];
 
     /// <summary>
     /// Called by References once it is done gathering all neccessary information
