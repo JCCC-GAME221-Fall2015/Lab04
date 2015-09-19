@@ -2,36 +2,51 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+
 /// <summary>
 /// References.cs gatheres references from various objects in the screen.
 /// It then stores the references for use in the game at later points. 
 /// @author Tiffany Fisher, 9-10-2015
 /// </summary>
-
 public class References : MonoBehaviour {
 
     //Variables to store all information, hidden from designer
     [HideInInspector]
     public Text[] letters;
+
     [HideInInspector]
     public Image[] correct;
+
     [HideInInspector]
     public Image[] unfilled;
+
     [HideInInspector]
     public Text hint;
+
     [HideInInspector]
     public Text score;
+
     [HideInInspector]
     public Image gameOverImage, gameWonImage;
+
     [HideInInspector]
     public Text gameOverText, gameWonText;
+
     [HideInInspector]
     public GameObject gameOverButton, gameWonButton;
+
     [HideInInspector]
     public Button[] buttons;
 
-    //Altered
-    void Start () {
+    [HideInInspector]
+    public List<string> sentences = new List<string>();
+
+    [HideInInspector]
+    public List<string> clues = new List<string>();
+
+    void Gather() {
+        sentences = GetComponent<Loader>().sentences;
+        clues = GetComponent<Loader>().clues;
 
         //Initialize the arrays to store 52 items, which is the number of letters on the wheel of 
         //fortune board
@@ -40,8 +55,7 @@ public class References : MonoBehaviour {
         unfilled = new Image[52];
 
         //Gather all of the references from the top row
-        for(int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             GameObject obj = GameObject.Find("Top Row (" + i + ")");
             letters[i] = obj.GetComponentInChildren<Text>();
             correct[i] = obj.GetComponentsInChildren<Image>()[0];
@@ -49,26 +63,23 @@ public class References : MonoBehaviour {
         }
 
         //Gather all of the references from the top middle row
-        for(int i = 0; i < 14; i++)
-        {
+        for (int i = 0; i < 14; i++) {
             GameObject obj = GameObject.Find("Top Middle Row (" + i + ")");
-            letters[i+12] = obj.GetComponentInChildren<Text>();
-            correct[i+12] = obj.GetComponentsInChildren<Image>()[0];
-            unfilled[i+12] = obj.GetComponentsInChildren<Image>()[1];
+            letters[i + 12] = obj.GetComponentInChildren<Text>();
+            correct[i + 12] = obj.GetComponentsInChildren<Image>()[0];
+            unfilled[i + 12] = obj.GetComponentsInChildren<Image>()[1];
         }
 
         //Gather all of the references from the bottom middle row
-        for (int i = 0; i < 14; i++)
-        {
+        for (int i = 0; i < 14; i++) {
             GameObject obj = GameObject.Find("Bottom Middle Row (" + i + ")");
-            letters[i+26] = obj.GetComponentInChildren<Text>();
-            correct[i+26] = obj.GetComponentsInChildren<Image>()[0];
-            unfilled[i+26] = obj.GetComponentsInChildren<Image>()[1];
+            letters[i + 26] = obj.GetComponentInChildren<Text>();
+            correct[i + 26] = obj.GetComponentsInChildren<Image>()[0];
+            unfilled[i + 26] = obj.GetComponentsInChildren<Image>()[1];
         }
 
         //Gather all of the references from the bottom row
-        for (int i = 0; i < 12; i++)
-        {
+        for (int i = 0; i < 12; i++) {
             GameObject obj = GameObject.Find("Bottom Row (" + i + ")");
             letters[i + 40] = obj.GetComponentInChildren<Text>();
             correct[i + 40] = obj.GetComponentsInChildren<Image>()[0];
@@ -109,6 +120,5 @@ public class References : MonoBehaviour {
         //Inform the Engine to begin the game!
         SendMessage("Begin");
     }
-
 
 }
