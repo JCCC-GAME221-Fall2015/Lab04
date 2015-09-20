@@ -24,9 +24,6 @@ public class Loader : MonoBehaviour {
 
     void Start() {
         original = new FileInfo(Application.dataPath + "/test.txt");
-        if (original == null) {
-            Debug.Log("yep");
-        }
 
         if (original != null && original.Exists) {
             reader = original.OpenText();
@@ -48,7 +45,5 @@ public class Loader : MonoBehaviour {
         }
         SendMessage("Gather");
     }
-
-    void Update
-        () {}
+    
 }
