@@ -13,7 +13,7 @@ public class LoadScript : MonoBehaviour
     FileInfo originalFile;
     TextAsset textFile;
     TextReader reader;
-
+    
     void Start()
     {
         originalFile = new FileInfo(Application.dataPath + "/sentences.txt");
