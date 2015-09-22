@@ -42,7 +42,7 @@ public class TriviaLoader : MonoBehaviour {
         while ( ( lineOfText = reader.ReadLine() ) != null ) {
 
             string question = lineOfText;
-            int answerCount = Convert.ToInt16(reader.ReadLine());
+            int answerCount = Convert.ToInt32(reader.ReadLine());
             List<string> answers = new List<string>();
             for (int i = 0; i < answerCount; i++) {
                 answers.Add(reader.ReadLine());
@@ -63,6 +63,7 @@ public class TriviaLoader : MonoBehaviour {
 public struct Trivia {
 
     public string question;
+    public string correctAnswer;
     public int answerCount;
     public List<string> answers;
 
@@ -70,6 +71,7 @@ public struct Trivia {
         this.question = question;
         this.answerCount = answerCount;
         answers = answersList;
+        correctAnswer = answers[0];
     }
 
 }
