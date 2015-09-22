@@ -3213,6 +3213,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -3264,6 +3265,8 @@ MonoBehaviour:
   gameOverButton: {fileID: 0}
   gameWonButton: {fileID: 0}
   buttons: []
+  phrases: []
+  clues: []
 --- !u!114 &309947101
 MonoBehaviour:
   m_ObjectHideFlags: 0
