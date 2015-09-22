@@ -16,7 +16,7 @@ Platform assembly: C:\Users\matthew\Projects\GitHub\Lab-04\Wheel Of Fortune\buil
 Loading C:\Users\matthew\Projects\GitHub\Lab-04\Wheel Of Fortune\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\matthew\Projects\GitHub\Lab-04\Wheel Of Fortune\build_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\matthew\Projects\GitHub\Lab-04\Wheel Of Fortune\build_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.045 seconds
+- Completed reload, in  0.114 seconds
 desktop: 3200x1800 60Hz; virtual: 3200x1800 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,5 +24,11 @@ desktop: 3200x1800 60Hz; virtual: 3200x1800 at 0,0
 Platform assembly: C:\Users\matthew\Projects\GitHub\Lab-04\Wheel Of Fortune\build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\matthew\Projects\GitHub\Lab-04\Wheel Of Fortune\build_Data\Managed\System.dll (this message is harmless)
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1c18 -> priority: 1 
-  Thread -> id: 94bc -> priority: 1 
+  Thread -> id: f890 -> priority: 1 
+  Thread -> id: 110dc -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.037133 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 215.
+Total: 0.295314 ms (FindLiveObjects: 0.020527 ms CreateObjectMapping: 0.013062 ms MarkObjects: 0.251926 ms  DeleteObjects: 0.008864 ms)
+

@@ -685,6 +685,11 @@ MonoBehaviour:
   - {fileID: 188678}
   - {fileID: 146008}
   - {fileID: 132678}
+  right: 0
+  wrong: 0
+  total: 0
+  currentQuestion: 0
+  maxQuestions: 0
   triviaQuestions: []
 --- !u!114 &11451090
 MonoBehaviour:
@@ -1245,10 +1250,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22478812}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: .690570831}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 175, y: -306}
-  m_SizeDelta: {x: -386, y: -104}
+  m_AnchoredPosition: {x: 175, y: 20}
+  m_SizeDelta: {x: -386, y: -430}
   m_Pivot: {x: .5, y: 0}
 --- !u!224 &22493158
 RectTransform:
