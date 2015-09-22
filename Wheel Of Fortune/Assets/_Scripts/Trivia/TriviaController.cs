@@ -15,19 +15,18 @@ public class TriviaController : MonoBehaviour {
 
     [Tooltip("text object to display questions")]
     public Text questionText;
+
     [Tooltip("text object to display game status")]
     public Text progressText; //wins, loses, total
 
     [Tooltip("gmae buttons. You need four")]
     public GameObject[] buttons;
 
-    int right, wrong, total, currentQuestion, maxQuestions;
+    public int right, wrong, total, currentQuestion, maxQuestions;
 
     public List<Trivia> triviaQuestions = new List<Trivia>();
-   
-    #endregion
 
-    
+    #endregion
 
     public void Play(GameObject thisButton) {
         string thisAnswer = thisButton.transform.GetChild(0).GetComponent<Text>().text;
@@ -35,31 +34,25 @@ public class TriviaController : MonoBehaviour {
             //correct
             right++;
             total++;
-
-            //still questions
-            if (currentQuestion < maxQuestions - 1) {
-                currentQuestion++;
-                Setup();
-            }
         } else {
             wrong++;
             total++;
-            //still questions
-            if ( currentQuestion < maxQuestions - 1 ) {
-                currentQuestion++;
-                Setup();
+        }
+
+        //still questions
+        if (currentQuestion < maxQuestions-1) {
+            currentQuestion++;
+            Setup();
+        } else {
+            //last question
+            questionText.text = "You Finished the game! \n" +
+                                string.Format("Right: {0} | Wrong: {1} | Total: {2}   ", right, wrong, total);
+
+            //disable all buttons
+            foreach (GameObject button in buttons) {
+                button.SetActive(false);
             }
         }
-
-        //last question
-        questionText.text = "You Finished the game! \n" +
-                            string.Format( "Right: {0} | Wrong: {1} | Total: {2}   ", right, wrong, total );
-        
-        //disable all buttons
-        foreach ( GameObject button in buttons ) {
-            button.SetActive( false );
-        }
-
     }
 
     void Setup() {
@@ -75,17 +68,21 @@ public class TriviaController : MonoBehaviour {
                 button.SetActive(false);
             }
 
+            //randomize which answer goes where
+            string[] rngAnswers = new string[triviaQuestions[currentQuestion].answerCount];
+            foreach (string answer in triviaQuestions[currentQuestion].answers) {
+                int testIndex = Random.Range(0, triviaQuestions[currentQuestion].answerCount);
+                while (rngAnswers[testIndex] != "" && rngAnswers[testIndex] != null) {
+                    testIndex = Random.Range(0, triviaQuestions[currentQuestion].answerCount);
+                }
+                rngAnswers[testIndex] = answer;
+            }
+
             //activate needed buttons
             for (int i = 0; i < triviaQuestions[currentQuestion].answerCount; i++) {
                 buttons[i].SetActive(true);
-                buttons[i].transform.GetChild(0).GetComponent<Text>().text = triviaQuestions[currentQuestion].answers[i];
+                buttons[i].transform.GetChild(0).GetComponent<Text>().text = rngAnswers[i];
             }
-
-            //randomize which answer goes where
-
-            
-
-
         }
     }
 
@@ -101,6 +98,6 @@ public class TriviaController : MonoBehaviour {
     }
 
     void UpdateStatus() {
-        progressText.text = string.Format("Right: {0} | Wrong: {1} | Total: {2}   ",right, wrong, total);
+        progressText.text = string.Format("Right: {0} | Wrong: {1} | Total: {2}   ", right, wrong, total);
     }
 }
