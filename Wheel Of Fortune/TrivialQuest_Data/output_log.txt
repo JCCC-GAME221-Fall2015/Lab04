@@ -1,0 +1,92 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: ATI Radeon HD 5450 (ID=0x68f9)
+    Vendor:   ATI
+    VRAM:     1012 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.041 seconds
+desktop: 1024x768 75Hz; virtual: 1024x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 4c4 -> priority: 1 
+  Thread -> id: 12d0 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.597639 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 217.
+Total: 0.405086 ms (FindLiveObjects: 0.020827 ms CreateObjectMapping: 0.019318 ms MarkObjects: 0.353167 ms  DeleteObjects: 0.010866 ms)
+
+Correct count:1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Correct count:11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Game Over!  Correct: 11  Wrong: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.664378 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 190.
+Total: 0.326303 ms (FindLiveObjects: 0.017205 ms CreateObjectMapping: 0.015394 ms MarkObjects: 0.282836 ms  DeleteObjects: 0.009961 ms)
+
+Quit button clicked!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+

@@ -74,6 +74,9 @@ public class TriviaReferences : MonoBehaviour {
 			answerCounter++;
 		}
 
+		TriviaGameHelperScript.SetCorrectCount(0);
+		TriviaGameHelperScript.SetWrongCount(0);
+
 //		//Initialize the arrays to store 52 items, which is the number of letters on the wheel of 
 //		//fortune board
 //		letters = new Text[52];

@@ -25,6 +25,7 @@ public class TriviaEngine : MonoBehaviour {
 	private Text button3Text;
 	private Text button4Text;
 	private Text questionText;
+	private Text questionNumberText;
 	private string outputString;
 	private string[] questionArray;
 	private string[] correctAnswers;
@@ -35,7 +36,7 @@ public class TriviaEngine : MonoBehaviour {
 //	private int answerCounter = 0; // counter for current element in answers list
 	private int correctButton = 0; // number of button containing the correct answer
 	private bool waitingForKey = false;
-	private bool keyHasBeenPressed = false;
+//	private bool keyHasBeenPressed = false;
 
 
 //	int points;
@@ -79,6 +80,7 @@ public class TriviaEngine : MonoBehaviour {
 //		outputString = "Button 4 Text: " + button4Text.text.ToString();
 //		Debug.Log (outputString);
 		questionText = GameObject.Find("QuestionText").GetComponent<Text>();
+		questionNumberText = GameObject.Find("QuestionNumber").GetComponent<Text>();
 
 		questionArray = GetComponent<TriviaReferences>().questionArray;
 		correctAnswers = GetComponent<TriviaReferences>().correctAnswers;
@@ -97,22 +99,22 @@ public class TriviaEngine : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		if (keyHasBeenPressed)
-		{
-			keyHasBeenPressed = false;
-			currentQuestion++;
-			if (currentQuestion < questionCount)
-			{
-				correctButton = Random.Range(1, NUM_ANSWERS + 1);
-				DisplayQuestionAndAnswers(correctButton, currentQuestion);
-			}
-			else
-			{
-				outputString = "Game Over!  Correct: " + rightCount.ToString() +
-					"  Wrong: " + wrongCount.ToString();
-				Debug.Log (outputString);
-			}
-		}
+//		if (keyHasBeenPressed)
+//		{
+//			keyHasBeenPressed = false;
+//			currentQuestion++;
+//			if (currentQuestion < questionCount)
+//			{
+//				correctButton = Random.Range(1, NUM_ANSWERS + 1);
+//				DisplayQuestionAndAnswers(correctButton, currentQuestion);
+//			}
+//			else
+//			{
+//				outputString = "Game Over!  Correct: " + rightCount.ToString() +
+//					"  Wrong: " + wrongCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//		}
 	} // end method Update
 
 	/// <summary>
@@ -215,20 +217,27 @@ public class TriviaEngine : MonoBehaviour {
 		if (waitingForKey)
 		{
 			waitingForKey = false;
-			if (correctButton == 1)
-			{
-				rightCount++;
-				outputString = "Correct count:" + rightCount.ToString();
-				Debug.Log (outputString);
-			}
-			else
-			{
-				wrongCount++;
-				outputString = "Wrong count:" + wrongCount.ToString();
-				Debug.Log (outputString);
-			}
-			keyHasBeenPressed = true;
+			CheckButtonPress(1);
+//			keyHasBeenPressed = true;
 		}
+//		CheckButtonPress(1);
+//		if (waitingForKey)
+//		{
+//			waitingForKey = false;
+//			if (correctButton == 1)
+//			{
+//				rightCount++;
+//				outputString = "Correct count:" + rightCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			else
+//			{
+//				wrongCount++;
+//				outputString = "Wrong count:" + wrongCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			keyHasBeenPressed = true;
+//		}
 	}
 	
 	public void PressButton2()
@@ -236,20 +245,27 @@ public class TriviaEngine : MonoBehaviour {
 		if (waitingForKey)
 		{
 			waitingForKey = false;
-			if (correctButton == 2)
-			{
-				rightCount++;
-				outputString = "Correct count:" + rightCount.ToString();
-				Debug.Log (outputString);
-			}
-			else
-			{
-				wrongCount++;
-				outputString = "Wrong count:" + wrongCount.ToString();
-				Debug.Log (outputString);
-			}
-			keyHasBeenPressed = true;
+			CheckButtonPress(2);
+//			keyHasBeenPressed = true;
 		}
+//		CheckButtonPress(2);
+//		if (waitingForKey)
+//		{
+//			waitingForKey = false;
+//			if (correctButton == 2)
+//			{
+//				rightCount++;
+//				outputString = "Correct count:" + rightCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			else
+//			{
+//				wrongCount++;
+//				outputString = "Wrong count:" + wrongCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			keyHasBeenPressed = true;
+//		}
 	}
 	
 	public void PressButton3()
@@ -257,20 +273,27 @@ public class TriviaEngine : MonoBehaviour {
 		if (waitingForKey)
 		{
 			waitingForKey = false;
-			if (correctButton == 3)
-			{
-				rightCount++;
-				outputString = "Correct count:" + rightCount.ToString();
-				Debug.Log (outputString);
-			}
-			else
-			{
-				wrongCount++;
-				outputString = "Wrong count:" + wrongCount.ToString();
-				Debug.Log (outputString);
-			}
-			keyHasBeenPressed = true;
+			CheckButtonPress(3);
+//			keyHasBeenPressed = true;
 		}
+//		CheckButtonPress(3);
+//		if (waitingForKey)
+//		{
+//			waitingForKey = false;
+//			if (correctButton == 3)
+//			{
+//				rightCount++;
+//				outputString = "Correct count:" + rightCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			else
+//			{
+//				wrongCount++;
+//				outputString = "Wrong count:" + wrongCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			keyHasBeenPressed = true;
+//		}
 	}
 	
 	public void PressButton4()
@@ -278,21 +301,77 @@ public class TriviaEngine : MonoBehaviour {
 		if (waitingForKey)
 		{
 			waitingForKey = false;
-			if (correctButton == 4)
-			{
-				rightCount++;
-				outputString = "Correct count:" + rightCount.ToString();
-				Debug.Log (outputString);
-			}
-			else
-			{
-				wrongCount++;
-				outputString = "Wrong count:" + wrongCount.ToString();
-				Debug.Log (outputString);
-			}
-			keyHasBeenPressed = true;
+			CheckButtonPress(4);
+//			keyHasBeenPressed = true;
 		}
+//		CheckButtonPress(4);
+//		if (waitingForKey)
+//		{
+//			waitingForKey = false;
+//			if (correctButton == 4)
+//			{
+//				rightCount++;
+//				outputString = "Correct count:" + rightCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			else
+//			{
+//				wrongCount++;
+//				outputString = "Wrong count:" + wrongCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			keyHasBeenPressed = true;
+//		}
 	}
+	
+	public void CheckButtonPress(int buttonNumber)
+	{
+		if (correctButton == buttonNumber)
+		{
+			rightCount++;
+			outputString = "Correct count:" + rightCount.ToString();
+			Debug.Log (outputString);
+		}
+		else
+		{
+			wrongCount++;
+			outputString = "Wrong count:" + wrongCount.ToString();
+			Debug.Log (outputString);
+		}
+		currentQuestion++;
+		if (currentQuestion < questionCount)
+		{
+			correctButton = Random.Range(1, NUM_ANSWERS + 1);
+			DisplayQuestionAndAnswers(correctButton, currentQuestion);
+		}
+		else
+		{
+			outputString = "Game Over!  Correct: " + rightCount.ToString() +
+				"  Wrong: " + wrongCount.ToString();
+			Debug.Log (outputString);
+
+			TriviaGameHelperScript.SetCorrectCount(rightCount);
+			TriviaGameHelperScript.SetWrongCount(wrongCount);
+			LoadGameOverScene();
+		}
+//		if (waitingForKey)
+//		{
+//			waitingForKey = false;
+//			if (correctButton == 4)
+//			{
+//				rightCount++;
+//				outputString = "Correct count:" + rightCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			else
+//			{
+//				wrongCount++;
+//				outputString = "Wrong count:" + wrongCount.ToString();
+//				Debug.Log (outputString);
+//			}
+//			keyHasBeenPressed = true;
+//		}
+	} // end method CheckButtonPress
 
 	private void DisplayQuestionAndAnswers(int correctButton, int questionNumber)
 	{
@@ -324,9 +403,10 @@ public class TriviaEngine : MonoBehaviour {
 				button4Text.text = correctAnswers[questionNumber];
 				break;
 		}
-		keyHasBeenPressed = false;
+		ShowQuestionNumber();
+//		keyHasBeenPressed = false;
 		waitingForKey = true;
-	} // end method SetButtonAnswers
+	} // end method DisplayQuestionAndAnswers
 	
 	/// <summary>
 	/// Sets all player data to default values 
@@ -336,8 +416,8 @@ public class TriviaEngine : MonoBehaviour {
 		rightCount = 0;
 		wrongCount = 0;
 		currentQuestion = 0;
-		waitingForKey = false;
-		keyHasBeenPressed = false;
+//		waitingForKey = false;
+//		keyHasBeenPressed = false;
 
 		correctButton = Random.Range(1, NUM_ANSWERS + 1);
 		DisplayQuestionAndAnswers(correctButton, currentQuestion);
@@ -427,4 +507,15 @@ public class TriviaEngine : MonoBehaviour {
 //			bt.interactable = true;
 //		}
 	} // end method StartGame
+	
+	private void ShowQuestionNumber()
+	{
+		outputString = "Question " + (currentQuestion + 1).ToString() + " / " + questionCount.ToString();
+		questionNumberText.text = outputString;
+	}
+	
+	private void LoadGameOverScene ()
+	{
+		Application.LoadLevel("GameOverScene");
+	}
 } // end class TriviaEngine
