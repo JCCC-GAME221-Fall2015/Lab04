@@ -1,0 +1,21 @@
+﻿does this work?
+4
+yes
+no
+no
+no
+does this not work?
+4
+no
+yes
+yes
+yes
+what should i ask?
+3
+this?
+that?
+the other thing?
+this has 2 answers
+2
+yes
+no
