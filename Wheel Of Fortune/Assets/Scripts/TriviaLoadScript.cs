@@ -1,8 +1,15 @@
-﻿using UnityEngine;
+﻿/**
+ * @author Darrick Hilburn
+ * 
+ * THis script is used for loading in data for a trivia game.
+ */
+
+using UnityEngine;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
+// enum used for loading in question data.
 enum ReadLineType
 {
     QUESTION,
@@ -19,11 +26,11 @@ public class TriviaLoadScript : MonoBehaviour
     #endregion
 
     #region Vars
-    public int numQuestions; // Number of questions in a game
+   static int numQuestions; // Number of questions in a game
     
-    public string[] loadQuestions; // Array to hold questions
-    public string[,] loadAnswers; // Array of string arrays to hold answers per question
-    public string[] loadCorrect; // Array to hold which answer is correct per question
+    static string[] loadQuestions; // Array to hold questions
+    static string[,] loadAnswers; // Array of string arrays to hold answers per question
+    static string[] loadCorrect; // Array to hold which answer is correct per question
 
     List<string> questionsList = new List<string>(); // List used for reading in question data
     public List<string> answersList = new List<string>(); // List used for reading in answer data
@@ -46,6 +53,7 @@ public class TriviaLoadScript : MonoBehaviour
             textFile = (TextAsset)Resources.Load("embeddedTrivia", typeof(TextAsset));
             reader = new StringReader(textFile.text);
         }
+
         #endregion
 
         #region File Read
@@ -100,5 +108,27 @@ public class TriviaLoadScript : MonoBehaviour
         #endregion
 
         SendMessage("Gather");
-	}	
+	}
+
+    
+
+    public static int GetNumberOfQuestion()
+    {
+        return numQuestions;
+    }
+
+    public static string[] GetQuestions()
+    {
+        return loadQuestions;
+    }
+
+    public static string[,] GetAnswers()
+    {
+        return loadAnswers;
+    }
+
+    public static string[] GetCorrectAnswers()
+    {
+        return loadCorrect;
+    }
 }

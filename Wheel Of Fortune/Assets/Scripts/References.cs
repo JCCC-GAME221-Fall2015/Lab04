@@ -40,7 +40,7 @@ public class References : MonoBehaviour
         sentences = GetComponent<LoadScript>().sentences;
         clues = GetComponent<LoadScript>().clues;
 
-
+        #region In-Scene objects
         //Initialize the arrays to store 52 items, which is the number of letters on the wheel of 
         //fortune board
         letters = new Text[52];
@@ -82,7 +82,7 @@ public class References : MonoBehaviour
             correct[i + 40] = obj.GetComponentsInChildren<Image>()[0];
             unfilled[i + 40] = obj.GetComponentsInChildren<Image>()[1];
         }
-
+        
         //Gather references to both hint and score location
         hint = GameObject.Find("Hint").GetComponent<Text>();
         score = GameObject.Find("Score").GetComponent<Text>();
@@ -110,7 +110,7 @@ public class References : MonoBehaviour
         gameWonText.enabled = false;
         gameOverButton.SetActive(false);
         gameWonButton.SetActive(false);
-
+        #endregion
         //Gather references to all of the buttons that corrispond with letters
         buttons = GameObject.Find("Buttons").GetComponentsInChildren<Button>();
 

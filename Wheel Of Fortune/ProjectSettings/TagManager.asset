@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Question
+  - Answer
+  - New Tag
+  - Interface
+  - GameOver
+  - New Tag
   layers:
   - Default
   - TransparentFX
