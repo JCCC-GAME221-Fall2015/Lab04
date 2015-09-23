@@ -29,15 +29,25 @@ public class References : MonoBehaviour {
     public GameObject gameOverButton, gameWonButton;
     [HideInInspector]
     public Button[] buttons;
+    [HideInInspector]
+    public List<string> sentences = new List<string>();
+    [HideInInspector]
+    public List<string> clues = new List<string>();
+
 
     //Altered
-    void Start () {
+    void Gather () {
+
+        sentences = GetComponent<LoadScript>().sentences;
+        clues = GetComponent<LoadScript>().clues;
 
         //Initialize the arrays to store 52 items, which is the number of letters on the wheel of 
         //fortune board
         letters = new Text[52];
         correct = new Image[52];
         unfilled = new Image[52];
+
+
 
         //Gather all of the references from the top row
         for(int i = 0; i < 12; i++)

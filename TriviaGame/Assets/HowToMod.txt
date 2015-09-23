@@ -1,0 +1,17 @@
+The customQuestions.txt file overwrites the questions and answers from the game.
+
+The first line in the file will be read in as a question.
+example:
+How many shots go into a grande latte?
+
+The second line will be the answers displayed on the buttons.
+You must seperate the answers by commas.
+The first answer provided is saved as the correct answer.
+example:
+2,16,8,4
+
+In that example the number two would be processed as the correct answer!
+
+The next line will be read as a question and the next will be the answers for that one.
+(Even Lines are questions / Odd lines are answers)
+Can't have more than 4 answers

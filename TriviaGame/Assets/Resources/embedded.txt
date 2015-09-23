@@ -1,0 +1,8 @@
+What is our standard type of milk we use for lattes?
+2%,Whole,Soy,Apple Juice
+What's our most wanted fall drink?
+Pumpkin Spice,Salted Caramel Mocha
+Which one of these is not a starbucks menu item?
+Caramelicious, Pumpkin Spice, Strawberries & Creme, Caffe Americano
+How much does an ice water cost?
+Free, 50 cents, 60 cents
