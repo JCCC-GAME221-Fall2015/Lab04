@@ -3,6 +3,14 @@ using System.Collections;
 using System.IO;
 using System.Collections.Generic;
 
+/// <summary>
+/// Author: Andrew Seba
+/// Description: Reads in the lines from the text file. Either the user modded
+/// file (cusomQuestions.txt) or the embedded file in the editor
+/// 
+/// Mod instructions are listed in the main assets folder in the editor
+/// Sorry didnt have it in the exe folder.
+/// </summary>
 [RequireComponent(typeof(References))]
 public class LoadFile : MonoBehaviour {
 

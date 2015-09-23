@@ -3,6 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+/// <summary>
+/// Author: Andrew Seba
+/// Description: Sets up the UI variables for the engine to input. and starts
+/// the engine.
+/// </summary>
 public class References : MonoBehaviour {
 
     //public Text[] questions;
