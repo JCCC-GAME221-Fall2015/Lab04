@@ -8,8 +8,8 @@ using System.Collections.Generic;
 /// @author Tiffany Fisher, 9-10-2015
 /// </summary>
 
-public class References : MonoBehaviour {
-
+public class References : MonoBehaviour 
+{
     //Variables to store all information, hidden from designer
     [HideInInspector]
     public Text[] letters;
@@ -29,10 +29,18 @@ public class References : MonoBehaviour {
     public GameObject gameOverButton, gameWonButton;
     [HideInInspector]
     public Button[] buttons;
+    [HideInInspector]
+    public List<string> sentences = new List<string>();
+    [HideInInspector]
+    public List<string> clues = new List<string>();
 
     //Altered
-    void Start () {
+    void Gather () 
+    {
+        sentences = GetComponent<LoadScript>().sentences;
+        clues = GetComponent<LoadScript>().clues;
 
+        #region In-Scene objects
         //Initialize the arrays to store 52 items, which is the number of letters on the wheel of 
         //fortune board
         letters = new Text[52];
@@ -74,7 +82,7 @@ public class References : MonoBehaviour {
             correct[i + 40] = obj.GetComponentsInChildren<Image>()[0];
             unfilled[i + 40] = obj.GetComponentsInChildren<Image>()[1];
         }
-
+        
         //Gather references to both hint and score location
         hint = GameObject.Find("Hint").GetComponent<Text>();
         score = GameObject.Find("Score").GetComponent<Text>();
@@ -102,13 +110,11 @@ public class References : MonoBehaviour {
         gameWonText.enabled = false;
         gameOverButton.SetActive(false);
         gameWonButton.SetActive(false);
-
+        #endregion
         //Gather references to all of the buttons that corrispond with letters
         buttons = GameObject.Find("Buttons").GetComponentsInChildren<Button>();
 
         //Inform the Engine to begin the game!
         SendMessage("Begin");
     }
-
-
 }
