@@ -8,7 +8,8 @@ using System.Collections.Generic;
 /// @author Tiffany Fisher, 9-10-2015
 /// </summary>
 
-public class References : MonoBehaviour {
+public class References : MonoBehaviour 
+{
 
     //Variables to store all information, hidden from designer
     [HideInInspector]
@@ -29,6 +30,12 @@ public class References : MonoBehaviour {
     public GameObject gameOverButton, gameWonButton;
     [HideInInspector]
     public Button[] buttons;
+
+    [HideInInspector]
+    public List<string> sentences = new List<string>();
+
+    [HideInInspector]
+    public List<string> clues = new List<string>();
 
     //Altered
     void Start () {
@@ -110,5 +117,13 @@ public class References : MonoBehaviour {
         SendMessage("Begin");
     }
 
+    void Gather()
+    {
+        sentences = GetComponent<LoadScript>().sentences;
+        clues = GetComponent<LoadScript>().clues;
 
+        letters = new Text[52];
+        correct = new Image[52];
+        unfilled = new Image[52];
+    }
 }
