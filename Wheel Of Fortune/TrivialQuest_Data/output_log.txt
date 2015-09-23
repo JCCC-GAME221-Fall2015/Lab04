@@ -1,0 +1,50 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: ATI Radeon HD 5450 (ID=0x68f9)
+    Vendor:   ATI
+    VRAM:     1012 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.042 seconds
+desktop: 1024x768 75Hz; virtual: 1024x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\TrivialQuest_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: dfc -> priority: 1 
+  Thread -> id: 924 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.938694 ms
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 188.
+Total: 0.322378 ms (FindLiveObjects: 0.015696 ms CreateObjectMapping: 0.019922 ms MarkObjects: 0.254160 ms  DeleteObjects: 0.031694 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.615780 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 218.
+Total: 0.233030 ms (FindLiveObjects: 0.016601 ms CreateObjectMapping: 0.017507 ms MarkObjects: 0.195600 ms  DeleteObjects: 0.002716 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.751312 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 191.
+Total: 0.313625 ms (FindLiveObjects: 0.020526 ms CreateObjectMapping: 0.015394 ms MarkObjects: 0.267139 ms  DeleteObjects: 0.009961 ms)
+
+Quit button clicked!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
