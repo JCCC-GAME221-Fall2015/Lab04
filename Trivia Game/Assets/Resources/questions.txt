@@ -1,0 +1,12 @@
+42 is the answer to the ultimate question of life, the universe, and everything; according to the writings of Douglas Adam.
+false
+According to morning show DJ Johnny Dare, golf is not a sport because in sports the winner is whoever has more points.
+true
+Pi is an irrational number.
+true
+These built-in questions are really stupid.
+true
+There are 7 built-in questions for this game.
+false
+These questions are an example of why we let programmers design content.
+false

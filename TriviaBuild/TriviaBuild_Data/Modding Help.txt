@@ -1,0 +1,8 @@
+Each user created statement needs to be on a single line in questions.txt.
+The following line needs to be a declaration of wether the preceeding statement is true or false.
+Questions will be displayed in-game as written, answers are not case sensitive.
+Examples:
+It is impossible to die from drinking too much water.
+FALSE
+Programmers should generally not be allowed to generate gameplay content.
+TRUE
