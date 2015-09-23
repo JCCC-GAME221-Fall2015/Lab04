@@ -1,0 +1,446 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Times New Roman;}{\f1\froman\fcharset0 Times New Roman;}{\f2\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue0;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sl240\slmult1\qc\lang9\b\f0\fs24 Lab Report\par
+Lab 4 - User Generated Content\par
+Craig Broskow\par
+September 23, 2015\par
+\pard\sl240\slmult1\b0\par
+\par
+\pard\sl480\slmult1\ul Introduction:\par
+\ulnone\tab User generated content plays an important role within the gaming industry.  At its simplest, user generated content (UGC) allows gamers to create modifications of varying sophistication ("mods") to games which have already been released to the public.  This capability has been available for a number of games for quite a few years.\par
+\tab However, the gaming industry has also seen increased competition recently in seeking to engage customers (i.e., game owners) to their games in more personalized ways.  This increased emotional attachment not only gives game companies increased opportunities to sell peripheral products (such as DLC), but also improves customer satisfaction with the game and its potential franchise.  UGC is an important avenue to allow gamers to customize their games to their own personalities and within their circle of gaming associates (friends, competitors, school or workmates, etc.).\par
+\par
+\ul Methods:\par
+\ulnone\tab In the simple games in this lab, like "Wheel of Fortune" and "Trivial Quest", much of the code is involved with handling the user interface.  However, those methods have been documented in previous labs and primarily involve displaying text and images, and responding to GUI events such as button clicks, etc.\par
+\tab The real meat of this lab involved the processing of text files, and the handling of "internal" or "embedded" text files that come with the game versus the handling of "external" or user-generated text files that are provided after the game has been built, but within the file structure that Unity has ready access to.\par
+\tab Embedded text files are accessed using the built-in Unity class "TextAsset" via the convenient "Resources.Load" method call.  On the other hand, user generated content is handled slightly differently: the text file is stored in the folder path specified by the Unity property "Application.dataPath", and is accessed through the built-in "FileInfo" Unity class using the "OpenText" method call.  In both cases, lines of text are read in using StringReader classes.  For embedded text files, a stock StringReader class is used while for UGC text files the more specialized TextReader class is used.\par
+\tab Once the embedded or UGC text file is associated with a StringReader object, there is no difference in further processing.  Both types of text files are read in line-by-line using the "ReadLine" method of the StringReader (or TextReader) object.  The lines of text are read into string lists, and either processed directly using the string lists...or converted into equivalent string arrays and processed using arrays.  String lists are used initially because they are more flexible than arrays when the total number of elements to be stored are not known at design/build time.  However, once the string lists have been populated at run-time, the number of text lines is known and the string lists can be replaced by slightly more efficient string arrays.\par
+\tab At this point, all embedded or UGC text has been read, and the user interface can be customized for the actual playing of the game.  The primary task of reading in text into string lists/arrays has been accomplished.  In the case of "Wheel of Fortune", the GUI is populated with the letters that make up strings and they are uncovered as the game is played.  For "Trivial Quest", the GUI displays the question as a text element, while the answers are displayed as text on buttons for the player to choose between.  Score keeping and determining won/lost outcomes is straight-forward.\par
+\lang1033\f1\par
+\ul Conclusions:\par
+\ulnone\tab The Unity C# code developed in this lab is primarily concerned with reading in text files for processing within Unity games.  Embedded text files can provide "default" values or data sets, while external files can be read using very similar techniques...and allowing gamers to create their own user generated content to override the default values and data sets that came packaged with the game.\par
+\tab Although the techniques used in this lab are relatively simple, they provide substantial opportunity to expand the capability of games after they have been released...both to the benefit of gamers, and the companies that provide the extra level of customization that can increase the perceived value of their games.\par
+\par
+\ul Postlab Questions:\par
+\pard\sa39\ulnone 1.  Why are lists used instead of arrays in the LoadScript?\par
+\par
+\tab We don't know how many phrases and clues are contained in the sentences file before we start reading it.  Lists are more flexible than arrays in that they do not need to be initialized to a certain element count.  (Dynamic arrays are less efficient than lists because they need to be copied every time their size is changed.)  Lists support the use of the "Add" method to efficiently add phrases and clues to the lists as they are read.  Finally, lists can also be accessed by an index value (as is done in the StartGame method of the Engine class) so they can be used much like arrays.\par
+\par
+2.  What other method(s) could you use to load the data from an external file?\par
+\par
+\tab The "text" property of a TextAsset object will load all the data from an external file, and it can then be parsed into the individual phrases and clues.  Alternatively, the "ReadToEnd" method of a TextReader will do the same thing using standard C#.  Although less efficient, TextReaders can read individual characters or blocks of characters using the "Read" or "ReadBlock" C# methods.\par
+\par
+3.  What is the purpose of having two loading systems in your load script file?\par
+\par
+\tab If the user wishes to customize the game with their own phrases and clues, they can include a "sentences" text file.  However, not all users will do that, so the load script file will read the standard "embedded" text file whenever the user has not created or imported a custom text file.\par
+\par
+4.  Will FileInfo ever be null?  Why/Why not?\par
+\par
+\tab As far as I can tell, it would be very unusual for FileInfo to be null, but possible.  If for some reason that Unity data folder did not exist, or if the user did not have permission to read from that folder, I think FileInfo would be null.  However, if the game installation completed successfully and the user was able to run the game, I don't think FileInfo would ever be null.  Still, it does seem to be possible.\par
+\par
+5.  How could you allow the player to tell the engine where their file is that contains their custom sentences/phrases?\par
+\par
+\tab The easiest way (programming-wise) would be to provide a text box that the user could type in the path to their custom text file.  However, that would be very error-prone and not user-friendly.  A better way would be to use Microsoft's OpenFileDialog sub-class within the Windows.Form class to open a file-picker dialog box.  I don't think Unity provides a file-picker dialog box, although there may be some available in the Asset Store.\par
+\cf1\f0\par
+\pard\sl480\slmult1\cf0\f1\par
+\lang9\ul\f0 Code:\par
+\pard\sl240\slmult1\lang1033\ulnone\f2\fs20 // TriviaEngine.cs\par
+\pard using UnityEngine;\par
+using System.Collections;\par
+using UnityEngine.UI;\par
+using UnityEngine.EventSystems;\par
+\par
+// Force unity to add the TriviaReferences script if it is not already on the object\par
+[RequireComponent(typeof(TriviaReferences))]\par
+public class TriviaEngine : MonoBehaviour \{\par
+\tab\par
+\tab const int NUM_ANSWERS = 4; // number of answers per question\par
+\tab\par
+\tab TriviaReferences refs;\par
+\tab private int questionCount = 0;\par
+\tab private int rightCount = 0;\par
+\tab private int wrongCount = 0;\par
+\tab private int currentQuestion = 0;\par
+\par
+//\tab private GameObject canvasObject;\par
+\tab private GameObject button1;\par
+\tab private GameObject button2;\par
+\tab private GameObject button3;\par
+\tab private GameObject button4;\par
+\tab private Text button1Text;\par
+\tab private Text button2Text;\par
+\tab private Text button3Text;\par
+\tab private Text button4Text;\par
+\tab private Text questionText;\par
+\tab private Text questionNumberText;\par
+\tab private string outputString;\par
+\tab private string[] questionArray;\par
+\tab private string[] correctAnswers;\par
+\tab private string[] wrongAnswers1;\par
+\tab private string[] wrongAnswers2;\par
+\tab private string[] wrongAnswers3;\par
+\tab private int correctButton = 0; // number of button containing the correct answer\par
+\tab private bool waitingForKey = false;\par
+\par
+\tab void Begin()\par
+\tab\{\par
+\tab\tab //Gets a link to the TriviaReferences script\par
+\tab\tab refs = gameObject.GetComponent<TriviaReferences>();\par
+//\tab\tab canvasObject = GameObject.Find("Canvas");\par
+\tab\tab button1 = GameObject.Find("Answer1Button");\par
+\tab\tab button2 = GameObject.Find("Answer2Button");\par
+\tab\tab button3 = GameObject.Find("Answer3Button");\par
+\tab\tab button4 = GameObject.Find("Answer4Button");\par
+\par
+\tab\tab button1Text = button1.GetComponentInChildren<Text>();\par
+\tab\tab button2Text = button2.GetComponentInChildren<Text>();\par
+\tab\tab button3Text = button3.GetComponentInChildren<Text>();\par
+\tab\tab button4Text = button4.GetComponentInChildren<Text>();\par
+\tab\tab questionText = GameObject.Find("QuestionText").GetComponent<Text>();\par
+\tab\tab questionNumberText = GameObject.Find("QuestionNumber").GetComponent<Text>();\par
+\par
+\tab\tab questionArray = GetComponent<TriviaReferences>().questionArray;\par
+\tab\tab correctAnswers = GetComponent<TriviaReferences>().correctAnswers;\par
+\tab\tab wrongAnswers1 = GetComponent<TriviaReferences>().wrongAnswers1;\par
+\tab\tab wrongAnswers2 = GetComponent<TriviaReferences>().wrongAnswers2;\par
+\tab\tab wrongAnswers3 = GetComponent<TriviaReferences>().wrongAnswers3;\par
+\tab\tab questionCount = questionArray.Length;\par
+\par
+\tab\tab //Starts the game\par
+\tab\tab StartGame();\par
+\tab\}\par
+\par
+\tab public void PressButton1()\par
+\tab\{\par
+\tab\tab if (waitingForKey)\par
+\tab\tab\{\par
+\tab\tab\tab waitingForKey = false;\par
+\tab\tab\tab CheckButtonPress(1);\par
+\tab\tab\}\par
+\tab\}\par
+\tab\par
+\tab public void PressButton2()\par
+\tab\{\par
+\tab\tab if (waitingForKey)\par
+\tab\tab\{\par
+\tab\tab\tab waitingForKey = false;\par
+\tab\tab\tab CheckButtonPress(2);\par
+\tab\tab\}\par
+\tab\}\par
+\tab\par
+\tab public void PressButton3()\par
+\tab\{\par
+\tab\tab if (waitingForKey)\par
+\tab\tab\{\par
+\tab\tab\tab waitingForKey = false;\par
+\tab\tab\tab CheckButtonPress(3);\par
+\tab\tab\}\par
+\tab\}\par
+\tab\par
+\tab public void PressButton4()\par
+\tab\{\par
+\tab\tab if (waitingForKey)\par
+\tab\tab\{\par
+\tab\tab\tab waitingForKey = false;\par
+\tab\tab\tab CheckButtonPress(4);\par
+\tab\tab\}\par
+\tab\}\par
+\tab\par
+\tab public void CheckButtonPress(int buttonNumber)\par
+\tab\{\par
+\tab\tab if (correctButton == buttonNumber)\par
+\tab\tab\tab rightCount++;\par
+\tab\tab else\par
+\tab\tab\tab wrongCount++;\par
+\tab\tab currentQuestion++;\par
+\tab\tab if (currentQuestion < questionCount)\par
+\tab\tab\{\par
+\tab\tab\tab correctButton = Random.Range(1, NUM_ANSWERS + 1);\par
+\tab\tab\tab DisplayQuestionAndAnswers(correctButton, currentQuestion);\par
+\tab\tab\}\par
+\tab\tab else\par
+\tab\tab\{\par
+\tab\tab\tab TriviaGameHelperScript.SetCorrectCount(rightCount);\par
+\tab\tab\tab TriviaGameHelperScript.SetWrongCount(wrongCount);\par
+\tab\tab\tab LoadGameOverScene();\par
+\tab\tab\}\par
+\tab\} // end method CheckButtonPress\par
+\par
+\tab private void DisplayQuestionAndAnswers(int correctButton, int questionNumber)\par
+\tab\{\par
+\tab\tab questionText.text = questionArray[questionNumber];\par
+\tab\tab switch (correctButton)\par
+\tab\tab\{\par
+\tab\tab\tab case 1:\par
+\tab\tab\tab\tab button1Text.text = correctAnswers[questionNumber];\par
+\tab\tab\tab\tab button2Text.text = wrongAnswers1[questionNumber];\par
+\tab\tab\tab\tab button3Text.text = wrongAnswers2[questionNumber];\par
+\tab\tab\tab\tab button4Text.text = wrongAnswers3[questionNumber];\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab case 2:\par
+\tab\tab\tab\tab button1Text.text = wrongAnswers1[questionNumber];\par
+\tab\tab\tab\tab button2Text.text = correctAnswers[questionNumber];\par
+\tab\tab\tab\tab button3Text.text = wrongAnswers2[questionNumber];\par
+\tab\tab\tab\tab button4Text.text = wrongAnswers3[questionNumber];\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab case 3:\par
+\tab\tab\tab\tab button1Text.text = wrongAnswers1[questionNumber];\par
+\tab\tab\tab\tab button2Text.text = wrongAnswers2[questionNumber];\par
+\tab\tab\tab\tab button3Text.text = correctAnswers[questionNumber];\par
+\tab\tab\tab\tab button4Text.text = wrongAnswers3[questionNumber];\par
+\tab\tab\tab\tab break;\par
+\tab\tab\tab default:\par
+\tab\tab\tab\tab button1Text.text = wrongAnswers1[questionNumber];\par
+\tab\tab\tab\tab button2Text.text = wrongAnswers2[questionNumber];\par
+\tab\tab\tab\tab button3Text.text = wrongAnswers3[questionNumber];\par
+\tab\tab\tab\tab button4Text.text = correctAnswers[questionNumber];\par
+\tab\tab\tab\tab break;\par
+\tab\tab\}\par
+\tab\tab ShowQuestionNumber();\par
+\tab\tab waitingForKey = true;\par
+\tab\} // end method DisplayQuestionAndAnswers\par
+\tab\par
+\tab public void StartGame()\par
+\tab\{\par
+\tab\tab rightCount = 0;\par
+\tab\tab wrongCount = 0;\par
+\tab\tab currentQuestion = 0;\par
+\tab\tab correctButton = Random.Range(1, NUM_ANSWERS + 1);\par
+\tab\tab DisplayQuestionAndAnswers(correctButton, currentQuestion);\par
+\tab\} // end method StartGame\par
+\tab\par
+\tab private void ShowQuestionNumber()\par
+\tab\{\par
+\tab\tab outputString = "Question " + (currentQuestion + 1).ToString() + " / " + questionCount.ToString();\par
+\tab\tab questionNumberText.text = outputString;\par
+\tab\}\par
+\tab\par
+\tab private void LoadGameOverScene ()\par
+\tab\{\par
+\tab\tab Application.LoadLevel("GameOverScene");\par
+\tab\}\par
+\} // end class TriviaEngine\par
+\pard\sl240\slmult1\par
+\par
+\par
+\par
+// TriviaLoadScript.cs\par
+\pard using UnityEngine;\par
+using System.Collections;\par
+using System.IO;\par
+using System.Collections.Generic;\par
+\par
+[RequireComponent(typeof(TriviaReferences))]\par
+public class TriviaLoadScript : MonoBehaviour \{\par
+\tab\par
+\tab FileInfo originalFile;\par
+\tab TextAsset textfile;\par
+\tab TextReader reader;\par
+\tab\par
+\tab public List<string> questions = new List<string>();\par
+\tab public List<string> answers = new List<string>();\par
+\par
+\tab // Use this for initialization\par
+\tab void Start () \{\par
+\tab\tab\par
+\tab\tab originalFile = new FileInfo(Application.dataPath + "/questions.txt");\par
+\tab\tab if (originalFile != null && originalFile.Exists)\par
+\tab\tab\{\par
+\tab\tab\tab reader = originalFile.OpenText();\par
+\tab\tab\}\par
+\tab\tab else\par
+\tab\tab\{\par
+\tab\tab\tab textfile = (TextAsset)Resources.Load("embedded2", typeof(TextAsset));\par
+\tab\tab\tab reader = new StringReader(textfile.text);\par
+\tab\tab\}\par
+\tab\tab\par
+\tab\tab string lineOfText;\par
+\tab\tab int lineNumber = 0;\par
+\tab\tab\par
+\tab\tab while ((lineOfText = reader.ReadLine()) != null)\par
+\tab\tab\{\par
+\tab\tab\tab lineOfText = lineOfText.Replace("''", "'");\par
+\tab\tab\tab if (lineNumber%5 == 0)\par
+\tab\tab\tab\tab questions.Add(lineOfText);\par
+\tab\tab\tab else\par
+\tab\tab\tab\tab answers.Add(lineOfText);\par
+\tab\tab\tab lineNumber++;\par
+\tab\tab\}\par
+\tab\tab\par
+\tab\tab SendMessage("Gather");\par
+\tab\} // end method Start\par
+\} // end class TriviaLoadScript\par
+\pard\sl240\slmult1\par
+\par
+\par
+\par
+// TriviaReferences.cs\par
+\pard using UnityEngine;\par
+using System.Collections;\par
+using UnityEngine.UI;\par
+using System.Collections.Generic;\par
+\par
+public class TriviaReferences : MonoBehaviour \{\par
+\tab\par
+\tab //Variables to store all information, hidden from designer\par
+\tab [HideInInspector]\par
+\tab public List<string> questions = new List<string>();\par
+\tab [HideInInspector]\par
+\tab public List<string> answers = new List<string>();\par
+\tab [HideInInspector]\par
+\tab public string[] questionArray;\par
+\tab [HideInInspector]\par
+\tab public string[] correctAnswers;\par
+\tab [HideInInspector]\par
+\tab public string[] wrongAnswers1;\par
+\tab [HideInInspector]\par
+\tab public string[] wrongAnswers2;\par
+\tab [HideInInspector]\par
+\tab public string[] wrongAnswers3;\par
+\par
+\tab void Gather () \{\par
+\tab\tab int numQuestions = 0; // number of questions in input file\par
+\tab\tab int answerCounter = 0; // counter for current element in answers list\par
+\par
+\tab\tab questions = GetComponent<TriviaLoadScript>().questions;\par
+\tab\tab answers = GetComponent<TriviaLoadScript>().answers;\par
+\par
+\tab\tab numQuestions = questions.Count;\par
+\tab\tab questionArray = new string[numQuestions];\par
+\tab\tab correctAnswers = new string[numQuestions];\par
+\tab\tab wrongAnswers1 = new string[numQuestions];\par
+\tab\tab wrongAnswers2 = new string[numQuestions];\par
+\tab\tab wrongAnswers3 = new string[numQuestions];\par
+\par
+\tab\tab for (int i = 0; i < numQuestions; i++)\par
+\tab\tab\{\par
+\tab\tab\tab questionArray[i] = questions[i];\par
+\tab\tab\tab correctAnswers[i] = answers[answerCounter];\par
+\tab\tab\tab answerCounter++;\par
+\tab\tab\tab wrongAnswers1[i] = answers[answerCounter];\par
+\tab\tab\tab answerCounter++;\par
+\tab\tab\tab wrongAnswers2[i] = answers[answerCounter];\par
+\tab\tab\tab answerCounter++;\par
+\tab\tab\tab wrongAnswers3[i] = answers[answerCounter];\par
+\tab\tab\tab answerCounter++;\par
+\tab\tab\}\par
+\par
+\tab\tab TriviaGameHelperScript.SetCorrectCount(0);\par
+\tab\tab TriviaGameHelperScript.SetWrongCount(0);\par
+\par
+\tab\tab //Inform the Engine to begin the game!\par
+\tab\tab SendMessage("Begin");\par
+\tab\} // end method Gather\par
+\} // end class TriviaReferences\par
+\pard\sl240\slmult1\par
+\par
+\par
+\par
+// TriviaGameHelperScript.cs\par
+\pard using UnityEngine;\par
+using System;\par
+using System.Collections;\par
+\par
+public static class TriviaGameHelperScript \{\par
+\tab public static int correctCount \{get; private set;\}\par
+\tab public static int wrongCount \{get; private set;\}\par
+\par
+\tab public static void SetCorrectCount (int newCorrectCount)\par
+\tab\{\par
+\tab\tab correctCount = newCorrectCount;\par
+\tab\}\par
+\tab\par
+\tab public static void SetWrongCount (int newWrongCount)\par
+\tab\{\par
+\tab\tab wrongCount = newWrongCount;\par
+\tab\}\par
+\} // end class TriviaGameHelperScript\par
+\pard\sl240\slmult1\par
+\par
+\par
+\par
+// TriviaMainMenuScript.cs\par
+\pard using UnityEngine;\par
+using UnityEngine.UI;\par
+using UnityEngine.EventSystems;\par
+using System.Collections;\par
+\par
+public class TriviaMainMenuScript : MonoBehaviour \{\par
+\tab\par
+\tab public void LoadGameScene ()\par
+\tab\{\par
+\tab\tab Application.LoadLevel("GameScene");\par
+\tab\}\par
+\tab\par
+\tab public void LoadInstructionsScene ()\par
+\tab\{\par
+\tab\tab Application.LoadLevel("InstructionsScene");\par
+\tab\}\par
+\tab\par
+\tab public void QuitGame ()\par
+\tab\{\par
+\tab\tab Application.Quit();\par
+\tab\tab Debug.Log("Quit button clicked!");\par
+\tab\}\par
+\} // end class TriviaMainMenuScript\par
+\pard\sl240\slmult1\par
+\par
+\par
+\par
+// TriviaInstructionsScript.cs\par
+\pard using UnityEngine;\par
+using UnityEngine.UI;\par
+using UnityEngine.EventSystems;\par
+using System.Collections;\par
+\par
+public class TriviaInstructionsScript : MonoBehaviour \{\par
+\tab\par
+\tab public void LoadGameScene ()\par
+\tab\{\par
+\tab\tab Application.LoadLevel("GameScene");\par
+\tab\}\par
+\tab\par
+\tab public void LoadMainMenuScene ()\par
+\tab\{\par
+\tab\tab Application.LoadLevel("MainMenuScene");\par
+\tab\}\par
+\}\par
+\pard\sl240\slmult1\par
+\par
+\par
+\par
+// TriviaGameOverScript.cs\par
+\pard using UnityEngine;\par
+using UnityEngine.UI;\par
+using UnityEngine.EventSystems;\par
+using System.Collections;\par
+\par
+public class TriviaGameOverScript : MonoBehaviour \{\par
+\tab\par
+\tab // Use this for initialization\par
+\tab void Start () \{\par
+\tab\tab ShowCorrectCount();\par
+\tab\tab ShowWrongCount();\par
+\tab\}\par
+\tab\par
+\tab public void ShowCorrectCount()\par
+\tab\{\par
+\tab\tab GameObject.Find ("CorrectCountText").GetComponent<Text>().text =\par
+\tab\tab\tab "Correct: " + TriviaGameHelperScript.correctCount.ToString();\par
+\tab\}\par
+\tab\par
+\tab public void ShowWrongCount()\par
+\tab\{\par
+\tab\tab GameObject.Find ("WrongCountText").GetComponent<Text>().text =\par
+\tab\tab\tab "Wrong: " + TriviaGameHelperScript.wrongCount.ToString();\par
+\tab\}\par
+\tab\par
+\tab public void QuitGame ()\par
+\tab\{\par
+\tab\tab Application.Quit();\par
+\tab\tab Debug.Log("Quit button clicked!");\par
+\tab\}\par
+\}\par
+\par
+}
+ 

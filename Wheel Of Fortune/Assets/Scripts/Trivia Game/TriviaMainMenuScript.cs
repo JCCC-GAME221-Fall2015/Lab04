@@ -5,11 +5,6 @@ using System.Collections;
 
 public class TriviaMainMenuScript : MonoBehaviour {
 	
-	// Use this for initialization
-//	void Start () {
-//
-//	}
-	
 	public void LoadGameScene ()
 	{
 		Application.LoadLevel("GameScene");
@@ -17,7 +12,7 @@ public class TriviaMainMenuScript : MonoBehaviour {
 	
 	public void LoadInstructionsScene ()
 	{
-//		Application.LoadLevel("InstructionsScene");
+		Application.LoadLevel("InstructionsScene");
 	}
 	
 	public void QuitGame ()

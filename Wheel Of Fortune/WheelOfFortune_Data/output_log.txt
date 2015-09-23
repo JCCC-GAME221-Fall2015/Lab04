@@ -16,7 +16,7 @@ Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\WheelOfFo
 Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\WheelOfFortune_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\WheelOfFortune_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\WheelOfFortune_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.041 seconds
+- Completed reload, in  0.045 seconds
 desktop: 1024x768 75Hz; virtual: 1024x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,5 +24,5 @@ desktop: 1024x768 75Hz; virtual: 1024x768 at 0,0
 Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\WheelOfFortune_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Data\GAME 221\Labs\Lab 04\Lab04\Wheel Of Fortune\WheelOfFortune_Data\Managed\System.dll (this message is harmless)
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 14bc -> priority: 1 
-  Thread -> id: c90 -> priority: 1 
+  Thread -> id: 11e8 -> priority: 1 
+  Thread -> id: c60 -> priority: 1 

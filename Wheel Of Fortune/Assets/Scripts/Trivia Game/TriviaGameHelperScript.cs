@@ -5,8 +5,7 @@ using System.Collections;
 public static class TriviaGameHelperScript {
 	public static int correctCount {get; private set;}
 	public static int wrongCount {get; private set;}
-//	public static GameControlScript gameControlScript;
-	
+
 	public static void SetCorrectCount (int newCorrectCount)
 	{
 		correctCount = newCorrectCount;

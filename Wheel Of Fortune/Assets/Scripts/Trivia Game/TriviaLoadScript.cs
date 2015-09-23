@@ -17,7 +17,6 @@ public class TriviaLoadScript : MonoBehaviour {
 	void Start () {
 		
 		originalFile = new FileInfo(Application.dataPath + "/questions.txt");
-		
 		if (originalFile != null && originalFile.Exists)
 		{
 			reader = originalFile.OpenText();
@@ -33,15 +32,11 @@ public class TriviaLoadScript : MonoBehaviour {
 		
 		while ((lineOfText = reader.ReadLine()) != null)
 		{
+			lineOfText = lineOfText.Replace("''", "'");
 			if (lineNumber%5 == 0)
-			{
 				questions.Add(lineOfText);
-			}
 			else
-			{
 				answers.Add(lineOfText);
-			}
-			
 			lineNumber++;
 		}
 		
