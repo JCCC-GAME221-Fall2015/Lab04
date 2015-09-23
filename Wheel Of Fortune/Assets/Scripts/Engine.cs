@@ -14,8 +14,10 @@ public class Engine : MonoBehaviour {
     //Variables
     References refs;
     int points;
-    string word = "  Luck Be       In The         Air        Tonight"; //Stores the phrase the player should guess
-    string hint = "Phrases";                    //Stores the hint provided to the player 
+
+	string word = " ";
+	string hint = " ";
+
     int charGoal = 0;                           //Stores how many letters the player needs to guess
     int charGot = 0;                            //Tracks how many letters the player has already guessed
 
@@ -134,6 +136,14 @@ public class Engine : MonoBehaviour {
         //Sets the goal, and how many letters the player has guessed to zero
         charGoal = 0;
         charGot = 0;
+
+		// Add
+		int numSent = refs.phrases.Count;
+		int randomSent = Random.Range(0, numSent);
+		
+		//Add
+		word = refs.phrases[randomSent];
+		hint = refs.clues[randomSent];
 
         //If there are too many letters in the phrase, skip it 
         //Probably some more robust error checking and fail-safe should happen here
