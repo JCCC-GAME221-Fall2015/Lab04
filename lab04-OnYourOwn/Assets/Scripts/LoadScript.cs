@@ -22,9 +22,9 @@ public class LoadScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        //set the FileInfo to the UGC file
 		originalFile = new FileInfo (Application.dataPath + "/testFile.txt");
-
+        //if the file exists and is populated, use otherwise, fall back on the embedded file
 		if (originalFile != null && originalFile.Exists) 
 		{
 			reader = originalFile.OpenText ();
@@ -38,7 +38,7 @@ public class LoadScript : MonoBehaviour {
 		string lineOfText;
 		int lineNumber = 0;
 
-		//tell teh reader to read a line of text, and store that in the line of TextVariable
+		//tell the reader to read a line of text, and store that in the line of TextVariable
 		//continue doing this until there are no lines left
 		while ((lineOfText = reader.ReadLine ()) != null) 
 		{
@@ -52,6 +52,7 @@ public class LoadScript : MonoBehaviour {
 			}
 			lineNumber++;
 		}
+        //store total count of questions for use in showing data on screen
 		totalQuestions = answers.Count;
 		NextQuestion ();
 	}
@@ -60,19 +61,21 @@ public class LoadScript : MonoBehaviour {
 	void Update () {
 	
 	}
-
+    //Checks if True is the correct answer and populates screen with info on next question
 	public void _TrueButtonClick()
 	{
 		CheckAnswer (true);
 		NextQuestion ();
 	}
-	
+    //Checks if False is the correct answer and populates screen with info on next question
 	public void _FalseButtonClick()
 	{
 		CheckAnswer (false);
 		NextQuestion ();
 	}
 
+    //if not all questions have been answered, check if the current question's correct answer
+    //matches the boolean value of the chosen answer. Then increments the quesiton total.
 	void CheckAnswer(bool state)
 	{
 		if (questionNum <= questions.Count) {
@@ -89,7 +92,8 @@ public class LoadScript : MonoBehaviour {
 			questionNum++;
 		}
 	}
-
+    //if not done with all the questions, print the next question on the screen and update the total 
+    //and correct questions. Otherwise, call DoneWithQuestions
 	void NextQuestion()
 	{
 		if (questionNum <= questions.Count) {
@@ -100,6 +104,7 @@ public class LoadScript : MonoBehaviour {
 			DoneWithQuestions ();
 	}
 
+    //Prints final information to the screen.
 	void DoneWithQuestions()
 	{
 		questionText.text = "That's it!. How well did you do?";
